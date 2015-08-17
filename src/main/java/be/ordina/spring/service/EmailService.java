@@ -20,6 +20,8 @@ public class EmailService implements MessageService, ApplicationContextAware {
 
     private String footer;
 
+    private String defaultRecipient;
+
     public EmailService() {
     }
 
@@ -52,7 +54,7 @@ public class EmailService implements MessageService, ApplicationContextAware {
 
     @Override
     public boolean sendMessage(String msg, String receiver) {
-        logger.info("Email message sent to {} with Message '{} {}'", receiver, msg, footer);
+        logger.info("Email message sent to {} with Message '{} {}'", receiver != null ? receiver : defaultRecipient, msg, footer);
         return true;
     }
 
@@ -62,6 +64,10 @@ public class EmailService implements MessageService, ApplicationContextAware {
 
     public String getFooter() {
         return footer;
+    }
+
+    public void setDefaultRecipient(String defaultRecipient) {
+        this.defaultRecipient = defaultRecipient;
     }
 
     @Override
