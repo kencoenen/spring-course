@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Example4_PropertyInitialization {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("bean-factory-property.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("context-property.xml");
 
         // We ask the bean created by Spring
         EmailService emailService = (EmailService) context.getBean("emailService");

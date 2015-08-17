@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Example5_ConstructorInjection {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("bean-factory-constructor-injection.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("context-constructor-injection.xml");
 
         // We ask the bean created by Spring
         EmailService emailService = (EmailService) context.getBean("emailService");
