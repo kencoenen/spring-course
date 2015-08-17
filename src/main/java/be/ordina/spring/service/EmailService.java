@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
+ * Default Spring bean name is <code>emailService</code>.
+ *
  * @author Ken Coenen
  */
-@Service("scannedEmailService")
+@Service
 public class EmailService implements MessageService {
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
