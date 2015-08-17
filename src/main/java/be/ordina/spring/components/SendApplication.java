@@ -15,4 +15,8 @@ public class SendApplication {
     public boolean processMessage(String msg, String rec){
         return messageService.sendMessage(msg, rec);
     }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
 }
