@@ -19,6 +19,7 @@ public class Example1_Polymorphism {
         service.sendMessage("Hi Ordina with MessageService interface!", "info@ordina.be");
 
         // Inversion of Control in the SendApplication class (it does not create the dependency itself)
+        // This allows for loose coupling
         SendApplication app = new SendApplication();
         app.setMessageService(service);
         app.processMessage("Hi Ordina through SendApplication!", "info@ordina.be");

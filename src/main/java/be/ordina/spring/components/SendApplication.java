@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SendApplication {
+    /**
+     * We do not know which {@link be.ordina.spring.service.MessageService} we're using.
+     */
     @Autowired
     private MessageService messageService;
 
