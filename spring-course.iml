@@ -5,14 +5,11 @@
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/be/ordina/spring/config/MyConfiguration.java</file>
-          <file>file://$MODULE_DIR$/src/main/resources/bean-factory.xml</file>
-        </fileset>
-        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/be/ordina/spring/config/MyConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/resources/context-constructor-injection.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/context-dependency-injection.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/context-property.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/context.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/context-collections.xml</file>
         </fileset>
       </configuration>
     </facet>

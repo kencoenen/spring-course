@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Default Spring bean name is <code>emailService</code>.
  *
@@ -23,6 +25,26 @@ public class EmailService implements MessageService {
      */
     public EmailService(String footer) {
         this.footer = footer;
+    }
+
+    /**
+     * @param footer See constructor injection
+     * @param names  Collection injection
+     */
+    public EmailService(String footer, List<String> names) {
+        StringBuilder fullFooter = new StringBuilder(footer);
+        if (names != null) {
+            for (int i = 0; i < names.size(); i++) {
+                String name = names.get(i);
+                if (i == names.size() - 1) {
+                    fullFooter.append(" and ");
+                } else if (i < names.size() && i != 0) {
+                    fullFooter.append(", ");
+                }
+                fullFooter.append(name);
+            }
+        }
+        this.footer = fullFooter.toString();
     }
 
     @Override
