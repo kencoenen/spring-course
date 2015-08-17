@@ -15,6 +15,16 @@ public class EmailService implements MessageService {
 
     private String footer;
 
+    public EmailService() {
+    }
+
+    /**
+     * @param footer Set with constructor injection (see {@link }
+     */
+    public EmailService(String footer) {
+        this.footer = footer;
+    }
+
     @Override
     public boolean sendMessage(String msg, String receiver) {
         logger.info("Email message sent to {} with Message '{} {}'", receiver, msg, footer);
