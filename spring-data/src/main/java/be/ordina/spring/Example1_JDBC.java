@@ -1,3 +1,4 @@
+package be.ordina.spring;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class Example1_JDBC {
             }
 
             PreparedStatement preparedStatement = conn.prepareStatement("select * from message where id = ?");
-            preparedStatement.setInt(1, 2);
+            preparedStatement.setLong(1, 2L);
             rset = preparedStatement.executeQuery();
             while (rset.next()) {
                 logger.info("Message = {}, recipient = {}", rset.getString("message"), rset.getString("recipient"));
