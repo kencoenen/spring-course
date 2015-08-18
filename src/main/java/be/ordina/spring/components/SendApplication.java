@@ -2,6 +2,7 @@ package be.ordina.spring.components;
 
 import be.ordina.spring.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,6 +20,7 @@ public class SendApplication {
         return messageService.sendMessage(msg, rec);
     }
 
+    @Required
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
     }
