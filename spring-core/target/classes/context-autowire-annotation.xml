@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="sendApplication" class="be.ordina.spring.components.SendApplication" />
+
+    <bean id="messageService1" class="be.ordina.spring.service.EmailService">
+        <qualifier value="emailMessageService" />
+        <property name="footer" value="Best regards, Ken and Andreas"/>
+    </bean>
+
+    <bean id="messageService2" class="be.ordina.spring.service.EmailService">
+        <qualifier value="textMessageService" />
+        <property name="footer" value="Best regards, Ken and Andreas"/>
+    </bean>
+
+    <!-- Make Spring scan beans for the @Autowired annotation -->
+    <!-- bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /-->
+
+    <!-- Instead of defining each BeanPostProcessor seperately, we can add them all by defining the following in our XML config -->
+    <context:annotation-config />
+
+</beans>

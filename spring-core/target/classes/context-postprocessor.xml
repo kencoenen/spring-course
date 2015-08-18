@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="sendApplication" class="be.ordina.spring.components.SendApplication" autowire="byName"/>
+
+    <bean id="messageService" class="be.ordina.spring.service.EmailService">
+        <property name="footer" value="Best regards, Ken and Andreas"/>
+    </bean>
+
+    <!-- Declare the bean post processor -->
+    <bean class="be.ordina.spring.audit.MessageServicePostProcessor" />
+
+</beans>
