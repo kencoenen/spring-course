@@ -1,11 +1,18 @@
 package be.ordina.spring.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * @author Ken Coenen
  */
+@Entity
 public class Message {
+    @Id
     private Long id;
+    
     private String message;
+
     private String recipient;
 
     public Message() {

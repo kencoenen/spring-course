@@ -13,35 +13,41 @@ public class Example1_JDBC {
 
     public static void main(String[] args) {
         Connection conn = null;
+        Statement stmt = null;
         try {
             Class.forName("org.h2.Driver");
             conn = DriverManager.getConnection("jdbc:h2:mem:", "sa", "");
-            Statement st = conn.createStatement();
-            st.execute("create table message(id integer, message varchar(1024), recipient varchar(128))");
-            st.execute("insert into message values (1, 'Hello Ordina!', 'info@ordina.be')");
-            st.execute("insert into message values (2, 'Hello again, anybody there?', 'info@ordina.be')");
-            st.execute("insert into message values (3, 'Never mind...', 'info@ordina.be')");
+            stmt = conn.createStatement();
+            stmt.execute("create table message(id integer, message varchar(1024), recipient varchar(128))");
+            stmt.execute("insert into message values (1, 'Hello Ordina!', 'info@ordina.be')");
+            stmt.execute("insert into message values (2, 'Hello again, anybody there?', 'info@ordina.be')");
+            stmt.execute("insert into message values (3, 'Never mind...', 'info@ordina.be')");
 
-            Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery("select message, recipient from message");
             while (rset.next()) {
                 logger.info("Message = {}", rset.getString(1));
             }
 
-            PreparedStatement preparedStatement = conn.prepareStatement("select * from message where id = ?");
-            preparedStatement.setLong(1, 2L);
-            rset = preparedStatement.executeQuery();
-            while (rset.next()) {
-                logger.info("Message = {}, recipient = {}", rset.getString("message"), rset.getString("recipient"));
+            try (PreparedStatement ps = conn.prepareStatement("select * from message where id = ?")) {
+                ps.setLong(1, 2L);
+                rset = ps.executeQuery();
+                while (rset.next()) {
+                    logger.info("Message = {}, recipient = {}", rset.getString("message"), rset.getString("recipient"));
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (conn != null) {
                 try {
                     conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

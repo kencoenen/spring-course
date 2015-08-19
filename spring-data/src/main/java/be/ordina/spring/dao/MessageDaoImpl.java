@@ -3,11 +3,10 @@ package be.ordina.spring.dao;
 import be.ordina.spring.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * @author Ken Coenen
  */
-@Component
+@Repository
 public class MessageDaoImpl implements MessageDao {
     @Autowired
     private DataSource ds;
@@ -80,16 +79,5 @@ public class MessageDaoImpl implements MessageDao {
     @Override
     public int getCount() {
         return jdbcTemplate.queryForObject("select count(*) from message", Integer.class);
-    }
-
-    /**
-     * Map each {@link java.sql.ResultSet} row into a {@link be.ordina.spring.domain.Message} object.
-     * Do this in a separate class so that we can reuse it.
-     */
-    class MessageMapper implements RowMapper<Message> {
-        @Override
-        public Message mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Message(rs.getLong("id"), rs.getString("message"), rs.getString("recipient"));
-        }
     }
 }

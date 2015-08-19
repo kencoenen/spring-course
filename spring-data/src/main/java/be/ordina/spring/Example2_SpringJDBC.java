@@ -1,6 +1,7 @@
 package be.ordina.spring;
 
 import be.ordina.spring.dao.MessageDao;
+import be.ordina.spring.dao.MessageDaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -14,7 +15,7 @@ public class Example2_SpringJDBC {
 
     public static void main(String[] args) {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        MessageDao messageDao = context.getBean(MessageDao.class);
+        MessageDao messageDao = context.getBean(MessageDaoImpl.class);
 
         logger.info("{}", messageDao.getMessage(1L));
         logger.info("{} messages found", messageDao.getCount());
